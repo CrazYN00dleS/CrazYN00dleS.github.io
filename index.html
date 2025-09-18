@@ -3,31 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Portfolio</title>
+    <title>Yifan Shen (Terry) - XR Developer & Computer Scientist</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Three.js Canvas -->
+    <canvas id="three-canvas"></canvas>
+
     <!-- Navigation -->
     <nav class="nav">
-        <div class="logo">Portfolio</div>
+        <div class="logo">Yifan Shen</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <canvas id="three-canvas"></canvas>
         <div class="hero-content">
-            <h1 class="floating">Your Name</h1>
-            <p class="dynamic-text" id="dynamic-text">Creative Developer</p>
-            <a href="#about" class="cta-button">Explore My Work</a>
+            <h1 class="floating">Yifan Shen</h1>
+            <p class="hero-subtitle">(Terry)</p>
+            <p class="dynamic-text" id="dynamic-text">XR Developer & Computer Scientist</p>
+            <div class="hero-contact">
+                <a href="tel:+12065199227">(206) 519-9227</a> |
+                <a href="mailto:ys3869@columbia.edu">ys3869@columbia.edu</a> |
+                <a href="https://www.linkedin.com/in/terry-yifan-shen/" target="_blank">LinkedIn</a>
+            </div>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-button">View Projects</a>
+                <a href="#contact" class="cta-button secondary">Get In Touch</a>
+            </div>
         </div>
     </section>
 
@@ -36,30 +50,121 @@
         <h2>About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I'm a passionate developer with a focus on creating immersive digital experiences. I specialize in combining cutting-edge technologies like Three.js, React, and modern web standards to build applications that captivate users through interactive storytelling and seamless user experience.</p>
+                <p>I'm a passionate XR developer and computer scientist currently pursuing my Master's at Columbia University. With over 10 years of VR/AR enthusiasm and extensive experience in immersive technologies, I specialize in creating cutting-edge applications that push the boundaries of reality.</p>
                 <br>
-                <p>My approach emphasizes the importance of user experience through immersion and narrative, ensuring every application I design and develop tells a compelling story while maintaining optimal performance and accessibility.</p>
+                <p>My expertise spans from developing multiplayer VR experiences using Photon Fusion to implementing Gaussian Splatting for enhanced rendering quality. I've worked on everything from AR dungeon builders to interactive museum experiences, always focusing on intuitive user interaction and compelling storytelling.</p>
+                <br>
+                <p>Beyond coding, I'm an active member of the XR community, having volunteered at Augmented World Expo and organized tech events bringing together hundreds of professionals from Meta, Amazon, and Microsoft.</p>
             </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">⚛️</div>
-                    <h3>React</h3>
-                    <p>Modern UI development</p>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <span class="stat-number">3.8</span>
+                    <span class="stat-label">Columbia GPA</span>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎮</div>
-                    <h3>Three.js</h3>
-                    <p>3D web experiences</p>
+                <div class="stat-card">
+                    <span class="stat-number">3.9</span>
+                    <span class="stat-label">UW GPA</span>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3>JavaScript</h3>
-                    <p>Interactive functionality</p>
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Years VR/AR</span>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>UI/UX</h3>
-                    <p>User-centered design</p>
+                <div class="stat-card">
+                    <span class="stat-number">35k+</span>
+                    <span class="stat-label">Lines of Java</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="education-header">
+                    <div>
+                        <div class="education-school">Columbia University</div>
+                        <div class="education-location">New York, NY</div>
+                    </div>
+                    <div class="education-date">Sep 2024 - Dec 2025</div>
+                </div>
+                <div class="education-degree">Master of Science: Computer Science</div>
+                <div class="education-details">GPA: 3.8/4.0</div>
+                <div class="coursework">
+                    <div class="coursework-title">Major Coursework:</div>
+                    <div class="coursework-list">Topics in VR & AR, 3DUI & AR, UI Design, Computer Graphics, Topics in Software Engineering, Deep Learning for Computer Vision, Applied Machine Learning, Analysis of Algorithm, Advanced System Programming, Engineering Software-as-a-Service, Ethical AI</div>
+                </div>
+            </div>
+            
+            <div class="education-card">
+                <div class="education-header">
+                    <div>
+                        <div class="education-school">University of Washington-Seattle</div>
+                        <div class="education-location">Seattle, WA</div>
+                    </div>
+                    <div class="education-date">Sep 2018 - Aug 2023</div>
+                </div>
+                <div class="education-degree">Bachelor of Arts/Science; Major in Computer Science</div>
+                <div class="education-details">GPA: 3.9/4.0 | CUM LAUDE | DEAN'S LIST (11 semesters)</div>
+                <div class="coursework">
+                    <div class="coursework-title">Major Coursework:</div>
+                    <div class="coursework-list">Virtual Reality Systems, AR/VR Capstone, Computer Graphics, Computer Vision, Human-Computer Interaction, Artificial Intelligence, Data Structures and Algorithms, Software Design and Implementation, Hardware Software Interface, Data Structure & Parallelism, System Programming, Data Management, Computer Security, Computer Ethics, Software Entrepreneurship</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <h2>Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">Thryve Academy</div>
+                            <div class="experience-title">Software Engineer</div>
+                        </div>
+                        <div class="experience-date">Sep 2025 - Present</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Charge for developing platform's student-coach matching algorithm and interactive wellness tools</li>
+                        <li>Handled end-to-end product development, including web interfaces and backend services to support core application functionality</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">Columbia University CGUI Lab</div>
+                            <div class="experience-title">Graduate Research Assistant - Networking & XR Development</div>
+                        </div>
+                        <div class="experience-date">Sep 2024 - Dec 2024</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Implemented Photon Fusion Multiplayer to work with both Quest and HoloLens 2, extending runtime map generation features to be fully multiplayer-compatible</li>
+                        <li>Contributed to development of an XR system designed to visualize and explore dynamic ice sheet maps in an immersive, interactive environment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">Chinese Academy of Sciences (Shanghai Advanced Research Institute)</div>
+                            <div class="experience-title">Developer | On-site Internship</div>
+                        </div>
+                        <div class="experience-date">May 2021 - Jul 2021</div>
+                    </div>
+                    <ul class="experience-description">
+                        <li>Used C/C++ to develop a display analysis software that interacts with the display, drives several sampling hardware and analysis software to improve the overall display quality, impacting millions of engineers and users</li>
+                        <li>Collaborated with the development team to identify specific requirements, troubleshoot, and make improvements</li>
+                        <li>Designed, reviewed internal technology scheme, and drafted technology documentation</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -70,41 +175,245 @@
         <h2>Featured Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-image"></div>
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Time Travelers' Museum</h4>
+                        <p>Multiplayer VR Experience</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
                 <div class="project-content">
-                    <h3 class="project-title">Immersive Web Experience</h3>
-                    <p class="project-desc">A cutting-edge web application featuring 3D animations, particle systems, and interactive storytelling.</p>
+                    <div class="project-header">
+                        <div class="project-title">Time Travelers' Museum - Multiplayer VR Experience</div>
+                        <div class="project-date">Feb 2025 - Present</div>
+                    </div>
+                    <p class="project-desc">Integrated XR Interaction Toolkit for interaction design and applied Gaussian Splatting to enhance rendering quality. Developed pathfinding system and interactive environments with integrated visual effects to enhance storytelling.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Three.js</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">XR Interaction Toolkit</span>
+                        <span class="tech-tag">Gaussian Splatting</span>
+                        <span class="tech-tag">Multiplayer</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="project-card">
-                <div class="project-image"></div>
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Dungeon Fighter</h4>
+                        <p>AR Builder + VR Crawler</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
                 <div class="project-content">
-                    <h3 class="project-title">Interactive Portfolio</h3>
-                    <p class="project-desc">A responsive portfolio website with dynamic animations and seamless user interactions.</p>
+                    <div class="project-header">
+                        <div class="project-title">Dungeon Fighter</div>
+                        <div class="project-date">Feb 2025 - Apr 2025</div>
+                    </div>
+                    <p class="project-desc">Built an AR dungeon builder (plane detection, room/object placement, save/export) and a VR dungeon crawler (combat, NavMesh monster AI, multi-room progression). Implemented player locomotion, melee combat, weapon/chest system, and boss battle for an end-to-end single-player dungeon experience.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Unity</span>
+                        <span class="tech-tag">AR Foundation</span>
+                        <span class="tech-tag">XR Interaction Toolkit</span>
+                        <span class="tech-tag">Meta Quest 3/Pro</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>HoloLens 2 TowAR Defense</h4>
+                        <p>First Place AR/VR Capstone</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">HoloLens 2 TowAR Defense</div>
+                        <div class="project-date">Dec 2023 - Feb 2024</div>
+                    </div>
+                    <p class="project-desc">"BEST AR application in my 10 years of VR/AR experience" - John Akers, UW Reality Lab. First Place - AR/VR Capstone project featuring innovative mixed reality tower defense gameplay.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Mixed Reality Toolkit</span>
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">HoloLens 2</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Staring Nightmare</h4>
+                        <p>Second Place Computer Graphics</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Staring Nightmare</div>
+                        <div class="project-date">Feb 2023 - Apr 2023</div>
+                    </div>
+                    <p class="project-desc">Second Place - Computer Graphics, "You should publish it on Steam" - Steve Seitz, Co-Director UW Reality Lab. An immersive VR horror experience with advanced graphics and interaction systems.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">XR Interaction Toolkit</span>
+                        <span class="tech-tag">Blender</span>
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">Quest Pro</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>TableTop Game Tutorial</h4>
+                        <p>Interactive Web Tutorial System</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">TableTop Game Tutorial</div>
+                        <div class="project-date">Feb 2023 - Apr 2023</div>
+                    </div>
+                    <p class="project-desc">Built a rule-driven tutorial system with algorithms for move validation, hand detection, and scoring logic. Implemented drag-and-drop tile interactions with real-time feedback and a backend tutorial engine for progressive learning.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="project-card">
-                <div class="project-image"></div>
-                <div class="project-content">
-                    <h3 class="project-title">XR Application</h3>
-                    <p class="project-desc">An extended reality application pushing the boundaries of immersive user experiences.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">WebXR</span>
-                        <span class="tech-tag">A-Frame</span>
-                        <span class="tech-tag">WebGL</span>
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Bird Classification</h4>
+                        <p>Deep Learning CNN</p>
                     </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Bird Classification</div>
+                        <div class="project-date">Dec 2022 - Feb 2023</div>
+                    </div>
+                    <p class="project-desc">Implemented a Darknet Convolutional Neural Network to classify over 500 bird species using PyTorch and Python. Fed model with data provided by Kaggle competition consisting of 30k training images and 10k test images. Improved the model's accuracy by 131% in two weeks through 30 iterations.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">Deep Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2>Skills & Technologies</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Java (35k+ lines)</span>
+                    <span class="skill-item">C/C++ (10k+ lines)</span>
+                    <span class="skill-item">C#</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">HTML</span>
+                    <span class="skill-item">CSS</span>
+                    <span class="skill-item">SQL</span>
+                    <span class="skill-item">Ruby</span>
+                    <span class="skill-item">SwiftUI</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>XR/AR/VR Technologies</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Unity 3D</span>
+                    <span class="skill-item">Mixed Reality Toolkit</span>
+                    <span class="skill-item">XR Interaction Toolkit</span>
+                    <span class="skill-item">HoloLens 2</span>
+                    <span class="skill-item">Meta Quest Pro/3</span>
+                    <span class="skill-item">Vision Pro</span>
+                    <span class="skill-item">AR Foundation</span>
+                    <span class="skill-item">Photon Fusion</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>AI/ML & Graphics</h3>
+                <div class="skill-list">
+                    <span class="skill-item">PyTorch</span>
+                    <span class="skill-item">Computer Vision</span>
+                    <span class="skill-item">Deep Learning</span>
+                    <span class="skill-item">Computer Graphics</span>
+                    <span class="skill-item">Gaussian Splatting</span>
+                    <span class="skill-item">Blender</span>
+                    <span class="skill-item">Mixamo</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Development Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Xcode</span>
+                    <span class="skill-item">Linux</span>
+                    <span class="skill-item">Git</span>
+                    <span class="skill-item">Flask</span>
+                    <span class="skill-item">Node.js</span>
+                    <span class="skill-item">SQL++</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Chinese Mandarin (Native)</span>
+                    <span class="skill-item">English (Proficient)</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Interests & Achievements</h3>
+                <div class="skill-list">
+                    <span class="skill-item">VR/AR Enthusiast (10 years)</span>
+                    <span class="skill-item">Sim Racing (Top 50 in China)</span>
+                    <span class="skill-item">Competitive Shooting</span>
+                    <span class="skill-item">Badminton Championship</span>
+                    <span class="skill-item">Photography</span>
                 </div>
             </div>
         </div>
@@ -113,23 +422,49 @@
     <!-- Contact Section -->
     <section class="section" id="contact">
         <h2>Let's Connect</h2>
-        <form class="contact-form">
-            <div class="form-group">
-                <input type="text" placeholder="Your Name" required>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>I'm always interested in discussing new opportunities, innovative XR projects, or potential collaborations. Whether you're looking for an XR developer, researcher, or just want to chat about the future of immersive technologies, feel free to reach out!</p>
+                
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> <a href="mailto:ys3869@columbia.edu">ys3869@columbia.edu</a>
+                </div>
+                <div class="contact-item">
+                    <strong>📱 Phone:</strong> <a href="tel:+12065199227">(206) 519-9227</a>
+                </div>
+                <div class="contact-item">
+                    <strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/terry-yifan-shen/" target="_blank">terry-yifan-shen</a>
+                </div>
+                <div class="contact-item">
+                    <strong>📍 Location:</strong> New York, NY
+                </div>
             </div>
-            <div class="form-group">
-                <input type="email" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="What would you like to discuss?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Your message here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
     </section>
 
-    <!-- Three.js CDN - Load before our script -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Our custom script -->
     <script src="scripts.js"></script>
 </body>
 </html>
