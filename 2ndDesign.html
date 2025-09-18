@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yifan Shen (Terry) - XR Developer & Computer Scientist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* NeoGlass Theme (Default) */
+            --bg-primary: linear-gradient(to bottom, rgb(15, 23, 42), rgb(2, 6, 23), rgb(0, 0, 0));
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-nav: rgba(255, 255, 255, 0.05);
+            --border-primary: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --text-primary: rgb(241, 245, 249);
+            --text-secondary: rgba(241, 245, 249, 0.8);
+            --accent-gradient: linear-gradient(45deg, rgb(34, 211, 238), rgb(217, 70, 239));
+            --accent-primary: rgb(34, 211, 238);
+            --cursor-glow: rgba(34, 211, 238, 0.3);
+            --ring-color: rgba(34, 211, 238, 0.4);
+            --chip-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="brutalist"] {
+            --bg-primary: rgb(254, 252, 232);
+            --bg-card: rgb(255, 255, 255);
+            --bg-nav: rgb(255, 255, 255);
+            --border-primary: rgb(0, 0, 0);
+            --border-hover: rgb(0, 0, 0);
+            --text-primary: rgb(24, 24, 27);
+            --text-secondary: rgba(24, 24, 27, 0.8);
+            --accent-gradient: linear-gradient(45deg, rgb(24, 24, 27), rgb(82, 82, 91));
+            --accent-primary: rgb(24, 24, 27);
+            --cursor-glow: rgba(0, 0, 0, 0.2);
+            --ring-color: rgba(24, 24, 27, 0.4);
+            --chip-bg: rgb(24, 24, 27);
+        }
+
+        [data-theme="terminal"] {
+            --bg-primary: rgb(12, 15, 18);
+            --bg-card: rgb(15, 20, 25);
+            --bg-nav: rgb(15, 20, 25);
+            --border-primary: rgba(16, 185, 129, 0.3);
+            --border-hover: rgba(16, 185, 129, 0.4);
+            --text-primary: rgb(209, 255, 214);
+            --text-secondary: rgba(209, 255, 214, 0.8);
+            --accent-gradient: linear-gradient(45deg, rgb(16, 185, 129), rgb(163, 230, 53));
+            --accent-primary: rgb(16, 185, 129);
+            --cursor-glow: rgba(16, 185, 129, 0.2);
+            --ring-color: rgba(16, 185, 129, 0.4);
+            --chip-bg: rgba(16, 185, 129, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Cursor Glow */
+        .cursor-glow {
+            position: fixed;
+            width: 12rem;
+            height: 12rem;
+            background: var(--cursor-glow);
+            border-radius: 50%;
+            filter: blur(3rem);
+            pointer-events: none;
+            z-index: 1;
+            transition: all 0.1s ease;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 12px;
+            z-index: 50;
+            margin: 0 auto;
+            max-width: min(100%, 1100px);
+            background: var(--bg-nav);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .nav-links.open {
+            display: flex;
+            flex-direction: column;
+            margin-top: 12px;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                margin-top: 0;
+            }
+        }
+
+        .nav-link {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: inherit;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-toggle {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-primary);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: auto;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--border-hover);
+        }
+
+        .mobile-menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding-top: 6rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20rem;
+            height: 20rem;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            margin: 0 auto;
+            max-width: min(100%, 1100px);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-description {
+            max-width: 65ch;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-contact {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-contact a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-contact a:hover {
+            opacity: 0.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            aspect-ratio: 1;
+            width: 100%;
+            border-radius: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            padding: 8px;
+            transition: all 0.3s ease;
+            perspective: 1000px;
+        }
+
+        .hero-card-inner {
+            height: 100%;
+            width: 100%;
+            border-radius: 16px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 60%);
+            transition: transform 0.15s ease;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: -1.5rem;
+            right: -1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-primary);
+            padding: 8px 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            pointer-events: none;
+        }
+
+        /* Sections */
+        .section {
+            margin: 0 auto;
+            max-width: min(100%, 1100px);
+            padding: 5rem 1rem;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* About Section */
+        .about-text {
+            max-width: 65ch;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .chip {
+            background: var(--chip-bg);
+            border: 1px solid var(--border-primary);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        [data-theme="brutalist"] .chip {
+            color: white;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-gradient);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            margin-left: 5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4.25rem;
+            top: 1.25rem;
+            width: 15px;
+            height: 15px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(10px);
+            border-color: var(--border-hover);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .timeline-company {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            background: var(--chip-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-primary);
+        }
+
+        .timeline-description {
+            list-style: none;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .timeline-description li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        /* Projects Grid */
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 2rem;
+        }
+
+        .projects-hint {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--border-hover);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-thumbnail {
+            height: 200px;
+            background: var(--accent-gradient);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-thumbnail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(1px);
+        }
+
+        .thumbnail-placeholder {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .thumbnail-placeholder h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .thumbnail-placeholder p {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #333;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .project-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: var(--chip-bg);
+            padding: 4px 12px;
+            border-radius: 15px;
+            border: 1px solid var(--border-primary);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--chip-bg);
+            color: var(--accent-primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid var(--border-primary);
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 6px 16px;
+            background: var(--chip-bg);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (min-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-info h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-item a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .timeline-item {
+                margin-left: 3rem;
+            }
+            
+            .timeline::before {
+                left: 1rem;
+            }
+            
+            .timeline-item::before {
+                left: -2.75rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Brutalist theme specific styles */
+        [data-theme="brutalist"] .nav,
+        [data-theme="brutalist"] .hero-card,
+        [data-theme="brutalist"] .stat-card,
+        [data-theme="brutalist"] .timeline-card,
+        [data-theme="brutalist"] .project-card,
+        [data-theme="brutalist"] .contact-card {
+            border: 2px solid black;
+            box-shadow: 6px 6px 0 0 black;
+        }
+
+        [data-theme="brutalist"] .nav:hover,
+        [data-theme="brutalist"] .stat-card:hover,
+        [data-theme="brutalist"] .timeline-card:hover,
+        [data-theme="brutalist"] .project-card:hover {
+            box-shadow: 10px 10px 0 0 black;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-card);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body data-theme="neoglass">
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div class="logo">Yifan Shen</div>
+            <div class="nav-links" id="nav-links">
+                <button class="nav-link active" data-section="home">Home</button>
+                <button class="nav-link" data-section="about">About</button>
+                <button class="nav-link" data-section="experience">Experience</button>
+                <button class="nav-link" data-section="projects">Projects</button>
+                <button class="nav-link" data-section="contact">Contact</button>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Style: NeoGlass</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-glow"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="floating">Building spatial apps & immersive experiences</h1>
+                <p class="hero-subtitle">(Terry)</p>
+                <p class="hero-description">
+                    I craft XR prototypes, multiplayer VR experiences, and cutting-edge applications using Unity, Three.js, and modern web standards. Specializing in immersive technology with 10+ years of VR/AR passion.
+                </p>
+                <div class="hero-contact">
+                    <a href="tel:+12065199227">(206) 519-9227</a> |
+                    <a href="mailto:ys3869@columbia.edu">ys3869@columbia.edu</a> |
+                    <a href="https://www.linkedin.com/in/terry-yifan-shen/" target="_blank">LinkedIn</a>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card" id="hero-card">
+                    <div class="hero-card-inner"></div>
+                </div>
+                <div class="hero-badge">XR • Unity • WebGL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section reveal" id="about">
+        <h2>About</h2>
+        <p class="about-text">
+            I'm a passionate XR developer and computer scientist currently pursuing my Master's at Columbia University. With over 10 years of VR/AR enthusiasm and extensive experience in immersive technologies, I specialize in creating cutting-edge applications that push the boundaries of reality.
+        </p>
+        <div class="tech-chips">
+            <span class="chip">Unity 3D</span>
+            <span class="chip">Three.js</span>
+            <span class="chip">WebGL</span>
+            <span class="chip">C#</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Python</span>
+            <span class="chip">Mixed Reality Toolkit</span>
+            <span class="chip">XR Interaction Toolkit</span>
+            <span class="chip">Photon Fusion</span>
+            <span class="chip">HoloLens 2</span>
+            <span class="chip">Meta Quest</span>
+            <span class="chip">Computer Graphics</span>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">3.8</span>
+                <span class="stat-label">Columbia GPA</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3.9</span>
+                <span class="stat-label">UW GPA</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Years VR/AR</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">35k+</span>
+                <span class="stat-label">Lines of Code</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section reveal" id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">Thryve Academy</div>
+                            <div class="timeline-title">Software Engineer</div>
+                        </div>
+                        <div class="timeline-date">Sep 2025 - Present</div>
+                    </div>
+                    <ul class="timeline-description">
+                        <li>Developing platform's student-coach matching algorithm and interactive wellness tools</li>
+                        <li>Handling end-to-end product development, including web interfaces and backend services</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">Columbia University CGUI Lab</div>
+                            <div class="timeline-title">Graduate Research Assistant - XR Development</div>
+                        </div>
+                        <div class="timeline-date">Sep 2024 - Dec 2024</div>
+                    </div>
+                    <ul class="timeline-description">
+                        <li>Implemented Photon Fusion Multiplayer for Quest and HoloLens 2 compatibility</li>
+                        <li>Developed XR system for visualizing dynamic ice sheet maps in immersive environments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">Chinese Academy of Sciences</div>
+                            <div class="timeline-title">Developer | On-site Internship</div>
+                        </div>
+                        <div class="timeline-date">May 2021 - Jul 2021</div>
+                    </div>
+                    <ul class="timeline-description">
+                        <li>Developed display analysis software using C/C++ impacting millions of users</li>
+                        <li>Collaborated with development team for requirements analysis and improvements</li>
+                        <li>Designed technology schemes and drafted comprehensive documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section reveal" id="projects">
+        <div class="projects-header">
+            <h2>Featured Projects</h2>
+            <span class="projects-hint">Hover: tilt • Click: details</span>
+        </div>
+        <div class="projects-grid">
+            <!-- Time Travelers Museum -->
+            <div class="project-card" data-project="museum">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Time Travelers' Museum</h4>
+                        <p>Multiplayer VR Experience</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Time Travelers' Museum</div>
+                        <div class="project-date">Feb 2025 - Present</div>
+                    </div>
+                    <p class="project-desc">Integrated XR Interaction Toolkit with Gaussian Splatting for enhanced rendering. Developed pathfinding systems and interactive environments with visual effects.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">XR Interaction Toolkit</span>
+                        <span class="tech-tag">Gaussian Splatting</span>
+                        <span class="tech-tag">Multiplayer</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dungeon Fighter -->
+            <div class="project-card" data-project="dungeon">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Dungeon Fighter</h4>
+                        <p>AR Builder + VR Crawler</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Dungeon Fighter</div>
+                        <div class="project-date">Feb 2025 - Apr 2025</div>
+                    </div>
+                    <p class="project-desc">Built AR dungeon builder with plane detection and VR dungeon crawler with combat, NavMesh AI, and multi-room progression.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Unity</span>
+                        <span class="tech-tag">AR Foundation</span>
+                        <span class="tech-tag">XR Interaction Toolkit</span>
+                        <span class="tech-tag">Meta Quest 3/Pro</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HoloLens TowAR Defense -->
+            <div class="project-card" data-project="towar">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>HoloLens 2 TowAR Defense</h4>
+                        <p>First Place AR/VR Capstone</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">HoloLens 2 TowAR Defense</div>
+                        <div class="project-date">Dec 2023 - Feb 2024</div>
+                    </div>
+                    <p class="project-desc">"BEST AR application in my 10 years of VR/AR experience" - John Akers, UW Reality Lab. First Place AR/VR Capstone project.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Mixed Reality Toolkit</span>
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">HoloLens 2</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staring Nightmare -->
+            <div class="project-card" data-project="nightmare">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Staring Nightmare</h4>
+                        <p>Second Place Computer Graphics</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Staring Nightmare</div>
+                        <div class="project-date">Feb 2023 - Apr 2023</div>
+                    </div>
+                    <p class="project-desc">"You should publish it on Steam" - Steve Seitz, Co-Director UW Reality Lab. Immersive VR horror experience with advanced graphics.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">XR Interaction Toolkit</span>
+                        <span class="tech-tag">Blender</span>
+                        <span class="tech-tag">Unity 3D</span>
+                        <span class="tech-tag">Quest Pro</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TableTop Game Tutorial -->
+            <div class="project-card" data-project="tabletop">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>TableTop Game Tutorial</h4>
+                        <p>Interactive Web System</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">TableTop Game Tutorial</div>
+                        <div class="project-date">Feb 2023 - Apr 2023</div>
+                    </div>
+                    <p class="project-desc">Built rule-driven tutorial system with move validation, hand detection, and scoring logic. Real-time feedback with progressive learning.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bird Classification -->
+            <div class="project-card" data-project="bird">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Bird Classification</h4>
+                        <p>Deep Learning CNN</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Bird Classification</div>
+                        <div class="project-date">Dec 2022 - Feb 2023</div>
+                    </div>
+                    <p class="project-desc">Implemented Darknet CNN to classify 500+ bird species. Improved model accuracy by 131% using 30k training images in PyTorch.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">Deep Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section reveal" id="contact">
+        <div class="contact-card">
+            <h2>Let's build something</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>I'm always interested in discussing new opportunities, innovative XR projects, or potential collaborations. Whether you're looking for an XR developer, researcher, or just want to chat about the future of immersive technologies, feel free to reach out!</p>
+                    
+                    <div class="contact-item">
+                        <strong>📧 Email:</strong> <a href="mailto:ys3869@columbia.edu">ys3869@columbia.edu</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>📱 Phone:</strong> <a href="tel:+12065199227">(206) 519-9227</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>💼 LinkedIn:</strong> <a href="https://www.linkedin.com/in/terry-yifan-shen/" target="_blank">terry-yifan-shen</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>📍 Location:</strong> New York, NY
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="What would you like to discuss?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin: 0 auto; max-width: min(100%, 1100px); padding: 0 1rem 3rem; font-size: 14px; opacity: 0.7; text-align: center;">
+        © 2025 Yifan Shen (Terry). Built with modern web technologies.
+    </footer>
+
+    <script>
+        // Theme management
+        const themes = ['neoglass', 'brutalist', 'terminal'];
+        const themeNames = ['NeoGlass', 'Brutalist', 'Terminal'];
+        let currentTheme = 0;
+
+        function setTheme(themeIndex) {
+            document.body.setAttribute('data-theme', themes[themeIndex]);
+            document.getElementById('theme-toggle').textContent = `Style: ${themeNames[themeIndex]}`;
+        }
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            currentTheme = (currentTheme + 1) % themes.length;
+            setTheme(currentTheme);
+        });
+
+        // Cursor glow effect
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = (e.clientX - 96) + 'px';
+            cursorGlow.style.top = (e.clientY - 96) + 'px';
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        let isMenuOpen = false;
+
+        mobileMenuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            navLinks.classList.toggle('open', isMenuOpen);
+            
+            // Update icon
+            mobileMenuToggle.innerHTML = isMenuOpen ? 
+                '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' :
+                '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+        });
+
+        // Smooth scrolling navigation
+        function smoothScroll(targetId) {
+            const element = document.getElementById(targetId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Navigation active state
+        const navButtons = document.querySelectorAll('.nav-link');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetSection = button.getAttribute('data-section');
+                
+                // Update active state
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Scroll to section
+                smoothScroll(targetSection);
+                
+                // Close mobile menu
+                if (isMenuOpen) {
+                    isMenuOpen = false;
+                    navLinks.classList.remove('open');
+                    mobileMenuToggle.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+                }
+            });
+        });
+
+        // Hero card tilt effect
+        const heroCard = document.getElementById('hero-card');
+        heroCard.addEventListener('mousemove', (e) => {
+            const rect = heroCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = -(x - centerX) / 10;
+            
+            heroCard.querySelector('.hero-card-inner').style.transform = 
+                `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        heroCard.addEventListener('mouseleave', () => {
+            heroCard.querySelector('.hero-card-inner').style.transform = 'rotateX(0deg) rotateY(0deg)';
+        });
+
+        // Project card tilt effects
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = -(x - centerX) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)';
+            });
+
+            // Project click handler
+            card.addEventListener('click', () => {
+                const projectType = card.getAttribute('data-project');
+                console.log(`Opening project: ${projectType}`);
+                // Here you could open a modal or navigate to project details
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Section spy for navigation
+        const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    navButtons.forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-section') === sectionId);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) sectionObserver.observe(section);
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent!';
+                submitBtn.style.background = 'linear-gradient(45deg, #10b981, #34d399)';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Magnetic effect for buttons
+        document.querySelectorAll('.btn, .project-link').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - (rect.left + rect.width / 2);
+                const y = e.clientY - (rect.top + rect.height / 2);
+                
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Initialize
+        setTheme(0);
+    </script>
+</body>
+</html>
