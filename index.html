@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <canvas id="three-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="floating">Your Name</h1>
+            <p class="dynamic-text" id="dynamic-text">Creative Developer</p>
+            <a href="#about" class="cta-button">Explore My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate developer with a focus on creating immersive digital experiences. I specialize in combining cutting-edge technologies like Three.js, React, and modern web standards to build applications that captivate users through interactive storytelling and seamless user experience.</p>
+                <br>
+                <p>My approach emphasizes the importance of user experience through immersion and narrative, ensuring every application I design and develop tells a compelling story while maintaining optimal performance and accessibility.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">⚛️</div>
+                    <h3>React</h3>
+                    <p>Modern UI development</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎮</div>
+                    <h3>Three.js</h3>
+                    <p>3D web experiences</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>JavaScript</h3>
+                    <p>Interactive functionality</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX</h3>
+                    <p>User-centered design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-title">Immersive Web Experience</h3>
+                    <p class="project-desc">A cutting-edge web application featuring 3D animations, particle systems, and interactive storytelling.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">WebGL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-title">Interactive Portfolio</h3>
+                    <p class="project-desc">A responsive portfolio website with dynamic animations and seamless user interactions.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-title">XR Application</h3>
+                    <p class="project-desc">An extended reality application pushing the boundaries of immersive user experiences.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">WebXR</span>
+                        <span class="tech-tag">A-Frame</span>
+                        <span class="tech-tag">WebGL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2>Let's Connect</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Three.js CDN - Load before our script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Our custom script -->
+    <script src="scripts.js"></script>
+</body>
+</html>
