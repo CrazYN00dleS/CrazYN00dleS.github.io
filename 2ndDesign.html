@@ -16,7 +16,23 @@
         }
 
         :root {
-            /* NeoGlass Theme (Default) */
+            /* Daylight Theme (Default) */
+            --bg-primary: linear-gradient(to bottom, rgb(248, 250, 252), rgb(241, 245, 249), rgb(226, 232, 240));
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-nav: rgba(255, 255, 255, 0.9);
+            --border-primary: rgba(148, 163, 184, 0.3);
+            --border-hover: rgba(100, 116, 139, 0.4);
+            --text-primary: rgb(30, 41, 59);
+            --text-secondary: rgba(30, 41, 59, 0.7);
+            --accent-gradient: linear-gradient(45deg, rgb(59, 130, 246), rgb(147, 51, 234));
+            --accent-primary: rgb(59, 130, 246);
+            --cursor-glow: rgba(59, 130, 246, 0.1);
+            --ring-color: rgba(59, 130, 246, 0.3);
+            --chip-bg: rgba(59, 130, 246, 0.1);
+        }
+
+        [data-theme="neoglass"] {
+            /* NeoGlass Theme - Dark Mode */
             --bg-primary: linear-gradient(to bottom, rgb(15, 23, 42), rgb(2, 6, 23), rgb(0, 0, 0));
             --bg-card: rgba(255, 255, 255, 0.05);
             --bg-nav: rgba(255, 255, 255, 0.05);
@@ -30,7 +46,6 @@
             --ring-color: rgba(34, 211, 238, 0.4);
             --chip-bg: rgba(255, 255, 255, 0.1);
         }
-
         [data-theme="brutalist"] {
             --bg-primary: rgb(254, 252, 232);
             --bg-card: rgb(255, 255, 255);
@@ -96,6 +111,7 @@
             border-radius: 16px;
             padding: 12px 16px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .nav-content {
@@ -147,7 +163,8 @@
 
         .nav-link:hover,
         .nav-link.active {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-primary);
         }
 
         .theme-toggle {
@@ -365,17 +382,26 @@
             gap: 0.5rem;
         }
 
-        .chip {
-            background: var(--chip-bg);
-            border: 1px solid var(--border-primary);
-            border-radius: 50px;
-            padding: 6px 16px;
-            font-size: 14px;
-            color: var(--text-primary);
-        }
-
         [data-theme="brutalist"] .chip {
             color: white;
+        }
+
+        /* Brutalist theme specific styles */
+        [data-theme="brutalist"] .nav,
+        [data-theme="brutalist"] .hero-card,
+        [data-theme="brutalist"] .stat-card,
+        [data-theme="brutalist"] .timeline-card,
+        [data-theme="brutalist"] .project-card,
+        [data-theme="brutalist"] .contact-card {
+            border: 2px solid black;
+            box-shadow: 6px 6px 0 0 black;
+        }
+
+        [data-theme="brutalist"] .nav:hover,
+        [data-theme="brutalist"] .stat-card:hover,
+        [data-theme="brutalist"] .timeline-card:hover,
+        [data-theme="brutalist"] .project-card:hover {
+            box-shadow: 10px 10px 0 0 black;
         }
 
         /* Stats Grid */
@@ -394,11 +420,13 @@
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: var(--border-hover);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         }
 
         .stat-number {
@@ -454,11 +482,13 @@
             border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .timeline-card:hover {
             transform: translateX(10px);
             border-color: var(--border-hover);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         }
 
         .timeline-header {
@@ -537,12 +567,13 @@
             transition: all 0.3s ease;
             cursor: pointer;
             perspective: 1000px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .project-card:hover {
             transform: translateY(-15px) scale(1.02);
             border-color: var(--border-hover);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         .project-thumbnail {
@@ -683,6 +714,7 @@
             border: 1px solid var(--border-primary);
             border-radius: 24px;
             padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .contact-content {
@@ -823,22 +855,13 @@
             }
         }
 
-        /* Brutalist theme specific styles */
-        [data-theme="brutalist"] .nav,
-        [data-theme="brutalist"] .hero-card,
-        [data-theme="brutalist"] .stat-card,
-        [data-theme="brutalist"] .timeline-card,
-        [data-theme="brutalist"] .project-card,
-        [data-theme="brutalist"] .contact-card {
-            border: 2px solid black;
-            box-shadow: 6px 6px 0 0 black;
-        }
-
-        [data-theme="brutalist"] .nav:hover,
-        [data-theme="brutalist"] .stat-card:hover,
-        [data-theme="brutalist"] .timeline-card:hover,
-        [data-theme="brutalist"] .project-card:hover {
-            box-shadow: 10px 10px 0 0 black;
+        .chip {
+            background: var(--chip-bg);
+            border: 1px solid var(--border-primary);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 14px;
+            color: var(--text-primary);
         }
 
         /* Custom scrollbar */
@@ -856,7 +879,7 @@
         }
     </style>
 </head>
-<body data-theme="neoglass">
+    <body data-theme="daylight">
     <!-- Cursor Glow -->
     <div class="cursor-glow" id="cursor-glow"></div>
 
@@ -878,7 +901,7 @@
                 <button class="nav-link" data-section="projects">Projects</button>
                 <button class="nav-link" data-section="contact">Contact</button>
             </div>
-            <button class="theme-toggle" id="theme-toggle">Style: NeoGlass</button>
+            <button class="theme-toggle" id="theme-toggle">Style: Daylight</button>
         </div>
     </nav>
 
@@ -919,6 +942,37 @@
         <p class="about-text">
             I'm a passionate XR developer and computer scientist currently pursuing my Master's at Columbia University. With over 10 years of VR/AR enthusiasm and extensive experience in immersive technologies, I specialize in creating cutting-edge applications that push the boundaries of reality.
         </p>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <img src="" alt="AR/VR Icon" class="expertise-img" />
+                </div>
+                <div class="expertise-title">AR/VR</div>
+                <div class="expertise-subtitle">Developer</div>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <img src="" alt="Unity Icon" class="expertise-img" />
+                </div>
+                <div class="expertise-title">Unity</div>
+                <div class="expertise-subtitle">Developer</div>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <img src="" alt="Software Icon" class="expertise-img" />
+                </div>
+                <div class="expertise-title">Software</div>
+                <div class="expertise-subtitle">Engineer</div>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <img src="" alt="ML Icon" class="expertise-img" />
+                </div>
+                <div class="expertise-title">Machine Learning</div>
+                <div class="expertise-subtitle">Engineer</div>
+            </div>
+        </div>
+        
         <div class="tech-chips">
             <span class="chip">Unity 3D</span>
             <span class="chip">Three.js</span>
@@ -1240,8 +1294,8 @@
 
     <script>
         // Theme management
-        const themes = ['neoglass', 'brutalist', 'terminal'];
-        const themeNames = ['NeoGlass', 'Brutalist', 'Terminal'];
+        const themes = ['daylight', 'neoglass'];
+        const themeNames = ['Daylight', 'NeoGlass'];
         let currentTheme = 0;
 
         function setTheme(themeIndex) {
