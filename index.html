@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yifan Shen (Terry) - XR Developer & Computer Scientist</title>
+    <title>Yifan Shen (Terry) - Full-Stack Engineer & XR Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -45,35 +45,6 @@
             --cursor-glow: rgba(34, 211, 238, 0.3);
             --ring-color: rgba(34, 211, 238, 0.4);
             --chip-bg: rgba(255, 255, 255, 0.1);
-        }
-        [data-theme="brutalist"] {
-            --bg-primary: rgb(254, 252, 232);
-            --bg-card: rgb(255, 255, 255);
-            --bg-nav: rgb(255, 255, 255);
-            --border-primary: rgb(0, 0, 0);
-            --border-hover: rgb(0, 0, 0);
-            --text-primary: rgb(24, 24, 27);
-            --text-secondary: rgba(24, 24, 27, 0.8);
-            --accent-gradient: linear-gradient(45deg, rgb(24, 24, 27), rgb(82, 82, 91));
-            --accent-primary: rgb(24, 24, 27);
-            --cursor-glow: rgba(0, 0, 0, 0.2);
-            --ring-color: rgba(24, 24, 27, 0.4);
-            --chip-bg: rgb(24, 24, 27);
-        }
-
-        [data-theme="terminal"] {
-            --bg-primary: rgb(12, 15, 18);
-            --bg-card: rgb(15, 20, 25);
-            --bg-nav: rgb(15, 20, 25);
-            --border-primary: rgba(16, 185, 129, 0.3);
-            --border-hover: rgba(16, 185, 129, 0.4);
-            --text-primary: rgb(209, 255, 214);
-            --text-secondary: rgba(209, 255, 214, 0.8);
-            --accent-gradient: linear-gradient(45deg, rgb(16, 185, 129), rgb(163, 230, 53));
-            --accent-primary: rgb(16, 185, 129);
-            --cursor-glow: rgba(16, 185, 129, 0.2);
-            --ring-color: rgba(16, 185, 129, 0.4);
-            --chip-bg: rgba(16, 185, 129, 0.2);
         }
 
         body {
@@ -376,32 +347,172 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Expertise Grid */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .expertise-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .expertise-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .expertise-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tech Icons Section */
+        .tech-icons-section {
+            margin-top: 3rem;
+        }
+
+        .tech-icons-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tech-icon-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .tech-icon-item:nth-child(1) { animation-delay: 0.1s; }
+        .tech-icon-item:nth-child(2) { animation-delay: 0.2s; }
+        .tech-icon-item:nth-child(3) { animation-delay: 0.3s; }
+        .tech-icon-item:nth-child(4) { animation-delay: 0.4s; }
+        .tech-icon-item:nth-child(5) { animation-delay: 0.5s; }
+        .tech-icon-item:nth-child(6) { animation-delay: 0.6s; }
+        .tech-icon-item:nth-child(7) { animation-delay: 0.7s; }
+        .tech-icon-item:nth-child(8) { animation-delay: 0.8s; }
+        .tech-icon-item:nth-child(9) { animation-delay: 0.9s; }
+        .tech-icon-item:nth-child(10) { animation-delay: 1.0s; }
+        .tech-icon-item:nth-child(11) { animation-delay: 1.1s; }
+        .tech-icon-item:nth-child(12) { animation-delay: 1.2s; }
+
+        .tech-icon-container {
+            width: 110px;
+            height: 110px;
+            padding: 2px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tech-icon-container:hover {
+            transform: scale(1.1) rotateY(10deg);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+        }
+
+        [data-theme="neoglass"] .tech-icon-container:hover {
+            box-shadow: 0 15px 35px rgba(34, 211, 238, 0.4);
+        }
+
+        .tech-icon-inner {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .tech-icon-placeholder {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            overflow: hidden;
+        }
+
+        .tech-icon-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .tech-icon-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .tech-chips {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
 
-        [data-theme="brutalist"] .chip {
-            color: white;
-        }
-
-        /* Brutalist theme specific styles */
-        [data-theme="brutalist"] .nav,
-        [data-theme="brutalist"] .hero-card,
-        [data-theme="brutalist"] .stat-card,
-        [data-theme="brutalist"] .timeline-card,
-        [data-theme="brutalist"] .project-card,
-        [data-theme="brutalist"] .contact-card {
-            border: 2px solid black;
-            box-shadow: 6px 6px 0 0 black;
-        }
-
-        [data-theme="brutalist"] .nav:hover,
-        [data-theme="brutalist"] .stat-card:hover,
-        [data-theme="brutalist"] .timeline-card:hover,
-        [data-theme="brutalist"] .project-card:hover {
-            box-shadow: 10px 10px 0 0 black;
+        .chip {
+            background: var(--chip-bg);
+            border: 1px solid var(--border-primary);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 14px;
+            color: var(--text-primary);
         }
 
         /* Stats Grid */
@@ -853,15 +964,33 @@
             .contact-card {
                 padding: 2rem;
             }
-        }
 
-        .chip {
-            background: var(--chip-bg);
-            border: 1px solid var(--border-primary);
-            border-radius: 50px;
-            padding: 6px 16px;
-            font-size: 14px;
-            color: var(--text-primary);
+            .tech-icons-grid {
+                gap: 1.5rem;
+            }
+            
+            .tech-icon-container {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .tech-icon-placeholder {
+                width: 48px;
+                height: 48px;
+                background: transparent; /* Remove gradient to let image colors show */
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+                color: white;
+                overflow: hidden;
+            }
+            
+            .tech-icon-label {
+                font-size: 0.7rem;
+            }
         }
 
         /* Custom scrollbar */
@@ -879,7 +1008,7 @@
         }
     </style>
 </head>
-    <body data-theme="daylight">
+<body data-theme="daylight">
     <!-- Cursor Glow -->
     <div class="cursor-glow" id="cursor-glow"></div>
 
@@ -915,7 +1044,7 @@
                 <h1 class="floating">Building spatial apps & immersive experiences</h1>
                 <p class="hero-subtitle">(Terry)</p>
                 <p class="hero-description">
-                    I craft XR prototypes, multiplayer VR experiences, and cutting-edge applications using Unity, Three.js, and modern web standards. Specializing in immersive technology with 10+ years of VR/AR passion.
+                    I'm a full-stack engineer and XR developer who builds end-to-end solutions from immersive VR experiences to scalable web applications. Specializing in Unity, React, backend services, and cutting-edge XR technology with 10+ years of VR/AR passion.
                 </p>
                 <div class="hero-contact">
                     <a href="tel:+12065199227">(206) 519-9227</a> |
@@ -940,52 +1069,197 @@
     <section class="section reveal" id="about">
         <h2>About</h2>
         <p class="about-text">
-            I'm a passionate XR developer and computer scientist currently pursuing my Master's at Columbia University. With over 10 years of VR/AR enthusiasm and extensive experience in immersive technologies, I specialize in creating cutting-edge applications that push the boundaries of reality.
+            I'm a full-stack engineer and XR developer currently pursuing my Master's at Columbia University. With expertise spanning frontend development, backend architecture, and immersive technologies, I build complete solutions from web applications to VR experiences. My 10+ years of VR/AR passion combined with strong engineering fundamentals allows me to tackle complex technical challenges across the entire technology stack.
         </p>
+        
         <div class="expertise-grid">
             <div class="expertise-card">
-                <div class="expertise-icon">
-                    <img src="" alt="AR/VR Icon" class="expertise-img" />
+                <div class="expertise-icon">🥽</div>
+                <div class="expertise-content">
+                    <div class="expertise-title">AR/VR</div>
+                    <div class="expertise-subtitle">Developer</div>
                 </div>
-                <div class="expertise-title">AR/VR</div>
-                <div class="expertise-subtitle">Developer</div>
             </div>
             <div class="expertise-card">
-                <div class="expertise-icon">
-                    <img src="" alt="Unity Icon" class="expertise-img" />
+                <div class="expertise-icon">🎮</div>
+                <div class="expertise-content">
+                    <div class="expertise-title">Unity</div>
+                    <div class="expertise-subtitle">Developer</div>
                 </div>
-                <div class="expertise-title">Unity</div>
-                <div class="expertise-subtitle">Developer</div>
             </div>
             <div class="expertise-card">
-                <div class="expertise-icon">
-                    <img src="" alt="Software Icon" class="expertise-img" />
+                <div class="expertise-icon">⚙️</div>
+                <div class="expertise-content">
+                    <div class="expertise-title">Full-Stack</div>
+                    <div class="expertise-subtitle">Engineer</div>
                 </div>
-                <div class="expertise-title">Software</div>
-                <div class="expertise-subtitle">Engineer</div>
             </div>
             <div class="expertise-card">
-                <div class="expertise-icon">
-                    <img src="" alt="ML Icon" class="expertise-img" />
+                <div class="expertise-icon">🤖</div>
+                <div class="expertise-content">
+                    <div class="expertise-title">Machine Learning</div>
+                    <div class="expertise-subtitle">Engineer</div>
                 </div>
-                <div class="expertise-title">Machine Learning</div>
-                <div class="expertise-subtitle">Engineer</div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Icons -->
+        <div class="tech-icons-section">
+            <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">Technology Stack</h3>
+            <div class="tech-icons-grid">
+                <!-- Frontend -->
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">JavaScript</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/react-icon.png" alt="React" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">React</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/typescript-icon.png" alt="TypeScript" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">TypeScript</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Backend -->
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/python-icon.png" alt="Python" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">Python</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/java-icon.png" alt="Java" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">Java</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/csharp-icon.png" alt="C#" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">C# / .NET</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- XR/Game Development -->
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/unity-icon.png" alt="Unity" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">Unity 3D</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/hololens-icon.png" alt="Mixed Reality" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">Mixed Reality</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Graphics/Shaders -->
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/opengl-icon.png" alt="OpenGL" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">OpenGL/WebGL</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/glsl-icon.png" alt="GLSL" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">GLSL Shaders</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- DevOps/Tools -->
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/docker-icon.png" alt="Docker" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">Docker</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-icon-item">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-inner">
+                            <div class="tech-icon-placeholder">
+                                <img src="path/to/spark-icon.png" alt="Apache Spark" class="tech-icon-img">
+                            </div>
+                            <div class="tech-icon-label">Apache Spark</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
         <div class="tech-chips">
             <span class="chip">Unity 3D</span>
-            <span class="chip">Three.js</span>
+            <span class="chip">OpenGL</span>
             <span class="chip">WebGL</span>
+            <span class="chip">GLSL</span>
+            <span class="chip">Java</span>
+            <span class="chip">C/C++</span>
             <span class="chip">C#</span>
-            <span class="chip">JavaScript</span>
             <span class="chip">Python</span>
+            <span class="chip">Ruby</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">SwiftUI</span>
+            <span class="chip">React</span>
+            <span class="chip">Apache Spark</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">Flask</span>
             <span class="chip">Mixed Reality Toolkit</span>
             <span class="chip">XR Interaction Toolkit</span>
             <span class="chip">Photon Fusion</span>
             <span class="chip">HoloLens 2</span>
             <span class="chip">Meta Quest</span>
+            <span class="chip">VisionOS</span>
             <span class="chip">Computer Graphics</span>
+            <span class="chip">Git</span>
         </div>
         
         <div class="stats-grid">
@@ -1022,8 +1296,24 @@
                         <div class="timeline-date">Sep 2025 - Present</div>
                     </div>
                     <ul class="timeline-description">
-                        <li>Developing platform's student-coach matching algorithm and interactive wellness tools</li>
-                        <li>Handling end-to-end product development, including web interfaces and backend services</li>
+                        <li>Responsible for implementing platform's student-coach matching algorithm and interactive wellness tools</li>
+                        <li>Led full-cycle development of web interfaces and backend services to support core platform functionality</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">CrazyDream Studios LLC</div>
+                            <div class="timeline-title">Founder</div>
+                        </div>
+                        <div class="timeline-date">Aug 2023 - Sep 2024</div>
+                    </div>
+                    <ul class="timeline-description">
+                        <li>Founded and led a team of 7 members to pursue commercialization of XR applications praised by industry experts</li>
+                        <li>Coordinated collaboration, drafted technical documentation, and oversaw development to translate concepts into product-focused solutions</li>
                     </ul>
                 </div>
             </div>
@@ -1033,13 +1323,13 @@
                     <div class="timeline-header">
                         <div>
                             <div class="timeline-company">Columbia University CGUI Lab</div>
-                            <div class="timeline-title">Graduate Research Assistant - XR Development</div>
+                            <div class="timeline-title">Graduate Research Assistant - Networking & XR Development</div>
                         </div>
                         <div class="timeline-date">Sep 2024 - Dec 2024</div>
                     </div>
                     <ul class="timeline-description">
-                        <li>Implemented Photon Fusion Multiplayer for Quest and HoloLens 2 compatibility</li>
-                        <li>Developed XR system for visualizing dynamic ice sheet maps in immersive environments</li>
+                        <li>Implemented Photon Fusion Multiplayer to work with both Quest and HoloLens 2, extending runtime map generation features to be fully multiplayer-compatible, enabling synchronized interaction across 10+ users</li>
+                        <li>Contributed to development of an XR system designed to visualize and research dynamic ice sheet behavior in an immersive, interactive, and responsive environment</li>
                     </ul>
                 </div>
             </div>
@@ -1048,15 +1338,13 @@
                 <div class="timeline-card">
                     <div class="timeline-header">
                         <div>
-                            <div class="timeline-company">Chinese Academy of Sciences</div>
-                            <div class="timeline-title">Developer | On-site Internship</div>
+                            <div class="timeline-company">Chinese Academy of Sciences - Shanghai Advanced Research Institute</div>
+                            <div class="timeline-title">Software Developer | Supervisor: Dr. Zhenqi Han</div>
                         </div>
-                        <div class="timeline-date">May 2021 - Jul 2021</div>
+                        <div class="timeline-date">Jul 2021 - Oct 2021</div>
                     </div>
                     <ul class="timeline-description">
-                        <li>Developed display analysis software using C/C++ impacting millions of users</li>
-                        <li>Collaborated with development team for requirements analysis and improvements</li>
-                        <li>Designed technology schemes and drafted comprehensive documentation</li>
+                        <li>Developed C/C++ display analysis software integrating hardware sampling and analysis tools to evaluate color accuracy, gamma correction, and brightness/contrast performance, impacting millions of engineers and end-users</li>
                     </ul>
                 </div>
             </div>
@@ -1081,10 +1369,10 @@
                 </div>
                 <div class="project-content">
                     <div class="project-header">
-                        <div class="project-title">Time Travelers' Museum</div>
-                        <div class="project-date">Feb 2025 - Present</div>
+                        <div class="project-title">Time Travelers' Museum - Multiplayer VR Experience</div>
+                        <div class="project-date">Jan 2025 - May 2025</div>
                     </div>
-                    <p class="project-desc">Integrated XR Interaction Toolkit with Gaussian Splatting for enhanced rendering. Developed pathfinding systems and interactive environments with visual effects.</p>
+                    <p class="project-desc">Used Gaussian Splatting to store real world objects into virtual world and integrated interaction design for immersion. Developed pathfinding system and interactive environment with visual effects to enhance engagement and storytelling.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Unity 3D</span>
                         <span class="tech-tag">XR Interaction Toolkit</span>
@@ -1102,22 +1390,109 @@
             <div class="project-card" data-project="dungeon">
                 <div class="project-thumbnail">
                     <div class="thumbnail-placeholder">
-                        <h4>Dungeon Fighter</h4>
-                        <p>AR Builder + VR Crawler</p>
+                        <h4>Dungeon Builder & Crawler</h4>
+                        <p>VR & AR Experience</p>
                     </div>
                     <div class="play-button">▶</div>
                 </div>
                 <div class="project-content">
                     <div class="project-header">
-                        <div class="project-title">Dungeon Fighter</div>
-                        <div class="project-date">Feb 2025 - Apr 2025</div>
+                        <div class="project-title">Dungeon Builder & Crawler - VR & AR</div>
+                        <div class="project-date">Mar 2025 - May 2025</div>
                     </div>
-                    <p class="project-desc">Built AR dungeon builder with plane detection and VR dungeon crawler with combat, NavMesh AI, and multi-room progression.</p>
+                    <p class="project-desc">Built an AR dungeon builder with plane detection, object placement, and save/export features, paired with a VR dungeon crawler with locomotion, combat, NavMesh-driven AI, and multi-room progression. Implemented core gameplay systems including weapons, chests, sound effects, and a boss battle for a full single-player experience.</p>
                     <div class="project-tech">
+                        <span class="tech-tag">C#</span>
                         <span class="tech-tag">Unity</span>
                         <span class="tech-tag">AR Foundation</span>
                         <span class="tech-tag">XR Interaction Toolkit</span>
-                        <span class="tech-tag">Meta Quest 3/Pro</span>
+                        <span class="tech-tag">Meta Quest</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Style Transfer -->
+            <div class="project-card" data-project="style-transfer">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Style Transfer & ViT</h4>
+                        <p>Deep Learning CV</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Style Transfer & ViT Appearance Transfer</div>
+                        <div class="project-date">Sep 2024 - Dec 2024</div>
+                    </div>
+                    <p class="project-desc">Implemented a Vision Transformer-based semantic appearance transfer model (Splice) to map object appearances onto semantically related targets. Tuned architecture (layers, channels, skip connections) and hyperparameters to optimize detail preservation vs efficiency.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Vision Transformer</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Computer Vision</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campus Map -->
+            <div class="project-card" data-project="campus">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Campus Map</h4>
+                        <p>Full-Stack Web App</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Campus Map</div>
+                        <div class="project-date">Jun 2023 - Aug 2023</div>
+                    </div>
+                    <p class="project-desc">Developed a Java Spark REST backend and React frontend for an interactive campus map with shortest-path visualization. Designed and implemented a generic graph library later extended to support applications such as MarvelPaths and Pathfinder.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spark</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">REST API</span>
+                        <span class="tech-tag">Graph Algorithms</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Video Demo</a>
+                        <a href="#" class="project-link">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom VR Headset -->
+            <div class="project-card" data-project="vr-headset">
+                <div class="project-thumbnail">
+                    <div class="thumbnail-placeholder">
+                        <h4>Custom VR Headset</h4>
+                        <p>Hardware Development</p>
+                    </div>
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title">Custom VR Headset Development</div>
+                        <div class="project-date">Mar 2023 - Jun 2023</div>
+                    </div>
+                    <p class="project-desc">Customized a VR display with lenses, LCD, and Teensy microcontroller, implementing stereo rendering with lens distortion correction, IMU-based quaternion head tracking, advanced rendering pipelines (foveated, depth-of-field), and 6-DOF pose tracking with IMU fusion.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">GLSL</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Arduino/Teensy</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">Video Demo</a>
@@ -1138,9 +1513,9 @@
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title">HoloLens 2 TowAR Defense</div>
-                        <div class="project-date">Dec 2023 - Feb 2024</div>
+                        <div class="project-date">Jan 2023 - Apr 2023</div>
                     </div>
-                    <p class="project-desc">"BEST AR application in my 10 years of VR/AR experience" - John Akers, UW Reality Lab. First Place AR/VR Capstone project.</p>
+                    <p class="project-desc">Recognized as the "best AR application in my 10 years of VR/AR experience" by John Akers, UW Reality Lab. First Place AR/VR Capstone project. Developed a mixed reality defense game leveraging hand tracking, spatial mapping, and collaborative MR gameplay.</p>
                     <div class="project-tech">
                         <span class="tech-tag">C#</span>
                         <span class="tech-tag">Mixed Reality Toolkit</span>
@@ -1154,83 +1529,27 @@
                 </div>
             </div>
 
-            <!-- Staring Nightmare -->
-            <div class="project-card" data-project="nightmare">
+            <!-- Search Engine -->
+            <div class="project-card" data-project="search">
                 <div class="project-thumbnail">
                     <div class="thumbnail-placeholder">
-                        <h4>Staring Nightmare</h4>
-                        <p>Second Place Computer Graphics</p>
+                        <h4>Search Engine</h4>
+                        <p>Full-Stack System</p>
                     </div>
                     <div class="play-button">▶</div>
                 </div>
                 <div class="project-content">
                     <div class="project-header">
-                        <div class="project-title">Staring Nightmare</div>
-                        <div class="project-date">Feb 2023 - Apr 2023</div>
+                        <div class="project-title">Search Engine</div>
+                        <div class="project-date">Mar 2021 - Jun 2021</div>
                     </div>
-                    <p class="project-desc">"You should publish it on Steam" - Steve Seitz, Co-Director UW Reality Lab. Immersive VR horror experience with advanced graphics.</p>
+                    <p class="project-desc">Designed and implemented a full-stack search engine with custom data structures (doubly-linked list, chained hash table), including crawling, indexing, query processing, and a multithreaded C++ web server with search interface for concurrent queries.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">XR Interaction Toolkit</span>
-                        <span class="tech-tag">Blender</span>
-                        <span class="tech-tag">Unity 3D</span>
-                        <span class="tech-tag">Quest Pro</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Video Demo</a>
-                        <a href="#" class="project-link">Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TableTop Game Tutorial -->
-            <div class="project-card" data-project="tabletop">
-                <div class="project-thumbnail">
-                    <div class="thumbnail-placeholder">
-                        <h4>TableTop Game Tutorial</h4>
-                        <p>Interactive Web System</p>
-                    </div>
-                    <div class="play-button">▶</div>
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <div class="project-title">TableTop Game Tutorial</div>
-                        <div class="project-date">Feb 2023 - Apr 2023</div>
-                    </div>
-                    <p class="project-desc">Built rule-driven tutorial system with move validation, hand detection, and scoring logic. Real-time feedback with progressive learning.</p>
-                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Data Structures</span>
+                        <span class="tech-tag">Multithreading</span>
+                        <span class="tech-tag">Web Server</span>
                         <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Flask</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Video Demo</a>
-                        <a href="#" class="project-link">Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bird Classification -->
-            <div class="project-card" data-project="bird">
-                <div class="project-thumbnail">
-                    <div class="thumbnail-placeholder">
-                        <h4>Bird Classification</h4>
-                        <p>Deep Learning CNN</p>
-                    </div>
-                    <div class="play-button">▶</div>
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <div class="project-title">Bird Classification</div>
-                        <div class="project-date">Dec 2022 - Feb 2023</div>
-                    </div>
-                    <p class="project-desc">Implemented Darknet CNN to classify 500+ bird species. Improved model accuracy by 131% using 30k training images in PyTorch.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">CNN</span>
-                        <span class="tech-tag">Deep Learning</span>
                     </div>
                     <div class="project-links">
                         <a href="#" class="project-link">Video Demo</a>
@@ -1248,7 +1567,7 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Get In Touch</h3>
-                    <p>I'm always interested in discussing new opportunities, innovative XR projects, or potential collaborations. Whether you're looking for an XR developer, researcher, or just want to chat about the future of immersive technologies, feel free to reach out!</p>
+                    <p>I'm always interested in discussing new opportunities, innovative XR projects, or potential collaborations. Whether you're looking for a full-stack engineer, XR developer, researcher, or just want to chat about the future of immersive technologies, feel free to reach out!</p>
                     
                     <div class="contact-item">
                         <strong>📧 Email:</strong> <a href="mailto:ys3869@columbia.edu">ys3869@columbia.edu</a>
